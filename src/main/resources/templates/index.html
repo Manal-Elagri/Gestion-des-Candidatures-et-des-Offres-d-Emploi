@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Accueil</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Style de la vidéo pour occuper l'écran */
+    .video-section {
+        position: relative;
+        height: 100vh; /* Hauteur visible de l'écran */
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .full-page-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1; /* Vidéo en arrière-plan */
+    }
+    /* Conteneur de contenu pour centrer le texte et le bouton */
+    .content {
+        z-index: 1;
+        color: white;
+        padding: 20px;
+    }
+    /* Style du texte principal */
+    .motivational-text {
+        font-size: 2.5em;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Ombre pour contraste */
+        margin-bottom: 20px;
+    }
+    /* Style du bouton */
+    .btn-success {
+        font-size: 1.5em;
+        padding: 10px 30px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    /* Style pour le footer */
+    footer {
+        background-color: #f8f9fa;
+        padding: 30px;
+        text-align: center;
+        color: #6c757d;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .footer-info p {
+        margin: 5px 0;
+        font-size: 1em;
+    }
+    .social-icons a {
+        color: #6c757d;
+        margin: 0 15px;
+        font-size: 1.5em;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+    .social-icons a:hover {
+        color: #343a40;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Section vidéo en pleine page -->
+<section class="video-section">
+  <!-- Vidéo de fond -->
+  <video autoplay muted loop class="full-page-video">
+    <source src="/v1.mp4" type="video/mp4">
+    Votre navigateur ne supporte pas la vidéo.
+  </video>
+
+  <!-- Texte et bouton au centre de la vidéo -->
+  <div class="content">
+    <p class="motivational-text">Rejoignez-nous et demarrez votre parcours vers une carriere exceptionnelle !<br> Inscrivez-vous maintenant pour explorer les opportunites.</p>
+    <a href="/signup" class="btn btn-success">Demarrer votre inscription</a>
+    <a href="/connect" class="btn btn-success">Connecter a votre compte</a>
+
+  </div>
+</section>
+
+<!-- Footer sous la vidéo -->
+<footer>
+  <div class="footer-info">
+    <p>&copy; 2024 ME-OFFRE. Tous droits réservés.</p>
+    <p>Email : contactmeoffre@gmail.com | Téléphone : +212 5 22 22 22 22</p>
+  </div>
+  <div class="social-icons">
+    <a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+  </div>
+</footer>
+
+</body>
+</html>

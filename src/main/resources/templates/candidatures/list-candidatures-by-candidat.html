@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Mes Candidatures</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <h1>Mes Candidatures</h1>
+  <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+  <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID Candidature</th>
+      <th>ID Offre</th>
+      <th>Date Inscription</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="candidature : ${candidatures}">
+      <td th:text="${candidature.id.candidat}"></td>
+      <td th:text="${candidature.id.offre_emploi}"></td>
+      <td th:text="${candidature.id.dateinscription}"></td>
+      <td>
+        <a th:href="@{/deletecandudature(candidatId=${candidature.id.candidat}, offreId=${candidature.id.offre_emploi}, dateinscription=${candidature.id.dateinscription})}" class="btn btn-danger">Supprimer</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <a href="/add" class="btn btn-primary">Ajouter une Candidature</a>
+  <a href="/" class="btn btn-secondary">Retour à l'accueil</a>
+</div>
+</body>
+</html>

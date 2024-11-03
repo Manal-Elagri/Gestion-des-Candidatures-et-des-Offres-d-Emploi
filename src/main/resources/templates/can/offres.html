@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Mes Candidatures</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Offres inscrites</title>
+</head>
+<body>
+<h1>Offres auxquelles vous êtes inscrit</h1>
+
+<!-- Message d'erreur s'il n'y a pas d'offres -->
+<p th:text="${error}" style="color: red;"></p>
+
+<ul>
+  <th:block th:each="offre : ${offres}">
+    <li>
+      <strong th:text="${offre.titre}"></strong>
+      <p th:text="${offre.description}"></p>
+      <p>Date limite : <span th:text="${offre.dateLimite}"></span></p>
+    </li>
+  </th:block>
+</ul>
+
+<br>
+<a href="/offres-disponibles">Retour aux offres disponibles</a>
+</body>
+</html>

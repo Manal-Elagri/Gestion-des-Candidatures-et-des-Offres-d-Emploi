@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Inscription à la Candidature</title>
+</head>
+<body>
+<h2>Inscription à la Candidature</h2>
+<p>Vous êtes sur le point de vous inscrire à l'offre avec ID: <span th:text="${offreId}"></span></p>
+<form action="@{/candidats/{candidatId}/inscrire(candidatId=${candidatId}, offreId=${offreId})}" method="post">
+    <input type="submit" value="Confirmer l'inscription">
+</form>
+<a href="/offres-disponibles">Annuler</a>
+</body>
+</html>

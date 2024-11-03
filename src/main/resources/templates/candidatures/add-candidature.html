@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Ajouter une Candidature</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<style>
+
+  .btn-cancel:hover {
+        background-color: #c82333; /* Couleur rouge plus foncé au survol */
+    }
+</style>
+
+
+</head>
+<body>
+<div class="container">
+  <h2>Ajouter une Candidature</h2>
+  <form th:action="@{/save}" method="post">
+
+    <!-- Description -->
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" name="description" id="description" class="form-control" placeholder="Description" required>
+    </div>
+
+    <!-- Candidat -->
+    <div class="form-group">
+      <label for="candidat">Candidat</label>
+      <select name="candidatId" id="candidat" class="form-control" required>
+        <option value="" disabled selected>Choisissez un candidat</option>
+        <option th:each="candidat : ${candidats}" th:value="${candidat.id}" th:text="${candidat.nom}"></option>
+      </select>
+    </div>
+
+    <!-- Offre d'emploi -->
+    <div class="form-group">
+      <label for="offre">Offre d'emploi</label>
+      <select name="offreId" id="offre" class="form-control" required>
+        <option value="" disabled selected>Choisissez une offre d'emploi</option>
+        <option th:each="offre : ${offres}" th:value="${offre.id}" th:text="${offre.titre}"></option>
+      </select>
+    </div>
+
+    <!-- Date d'inscription -->
+    <div class="form-group">
+      <label for="dateinscription">Date d'inscription</label>
+      <input type="date" name="dateinscription" id="dateinscription" class="form-control" required>
+    </div>
+
+    <!-- Bouton Enregistrer -->
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <button type="button" class="btn btn-cancel" onclick="window.location.href='/'">Annuler</button>
+
+  </form>
+</div>
+</body>
+</html>

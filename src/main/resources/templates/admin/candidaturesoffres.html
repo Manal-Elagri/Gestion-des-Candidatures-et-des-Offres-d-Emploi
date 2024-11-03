@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Candidatures pour l'Offre</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <h1>Candidatures pour l'Offre : <span th:text="${offre.titre}"></span></h1>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Nom Candidat</th>
+      <th>Description</th>
+      <th>Date Inscription</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="candidature : ${candidatures}">
+      <td th:text="${candidature.candidat.nom}"></td>
+      <td th:text="${candidature.description}"></td>
+      <td th:text="${candidature.id.dateinscription}"></td>
+      <td>
+
+        <a th:href="@{/deletecandudatureoffre(candidatId=${candidature.candidat.id}, offreId=${candidature.offre.id}, dateinscription=${candidature.id.dateinscription})}" class="btn btn-danger">Supprimer</a>
+
+
+
+
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <a th:href="@{/offres}" class="btn btn-secondary">Retour aux Offres</a>
+</div>
+</body>
+</html>

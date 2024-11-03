@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Offres d'Emploi</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Style pour le tableau des offres */
+    table {
+        width: 100%;
+        margin-top: 20px;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+    th {
+        background-color: #007bff;
+        color: white;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Liste des Offres d'Emploi</h1>
+   <div th:switch="${offres}">
+    <div th:case="*">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Titre</th>
+      <th>Description</th>
+      <th>Date Limite</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="offre : ${offres}">
+      <td th:text="${offre.id}"></td>
+      <td th:text="${offre.titre}"></td>
+      <td th:text="${offre.description}"></td>
+      <td th:text="${offre.dateLimite}"></td>
+      <td>
+        <a th:href="@{/offres/edit/{id}(id=${offre.id})}" class="btn btn-warning">Modifier</a>
+        <a th:href="@{/offres/delete/{id}(id=${offre.id})}" class="btn btn-danger">Supprimer</a>
+        <a th:href="@{/offres/candidatures/{id}(id=${offre.id})}" class="btn btn-primary">Voir Candidatures</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+    </div>
+    <p>
+      <a href="/offres/create" class="btn btn-success">Ajouter une Offre</a>
+      <a th:href="@{/logout}" class="btn btn-success">Deconnexion</a>
+      <a href="/home" class="btn btn-secondary mt-3">Retour à l'accueil</a>
+    </p>
+  </div>
+</div>
+</body>
+</html>

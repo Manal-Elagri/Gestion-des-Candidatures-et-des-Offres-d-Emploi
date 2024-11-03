@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Liste des Candidatures</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <h2>List des Candidatures</h2>
+  <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+  <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Description</th>
+      <th>Nom du Candidat</th>
+      <th>Titre de l'Offre</th>
+      <th>Date d'inscription</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="candidature : ${candidatures}">
+      <td th:text="${candidature.description}"></td>
+      <td th:text="${candidature.candidat.nom}"></td>
+      <td th:text="${candidature.offre.titre}"></td>
+      <td th:text="${candidature.id.dateinscription}"></td>
+    </tr>
+    </tbody>
+  </table>
+  <p>
+    <a href="/home" class="btn btn-secondary mt-3">Retour à l'accueil</a>
+  </p>
+</div>
+</body>
+</html>

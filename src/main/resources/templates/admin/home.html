@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Page d'Accueil Administrateur</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Conteneur principal */
+        .background-video {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000; /* Couleur de fond */
+        }
+
+        /* Vidéo en arrière-plan */
+        .background-video video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            opacity: 0.6; /* Opacité augmentée pour plus d'effet */
+            pointer-events: none; /* Désactive les interactions avec la vidéo */
+        }
+
+        /* Boîte de contenu */
+        .container-form {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            width: 100%;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.9); /* Fond semi-transparent blanc */
+            border-radius: 20px; /* Coins arrondis */
+            box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: #333; /* Texte sombre */
+        }
+
+        /* Titre */
+        h1 {
+            font-size: 32px; /* Taille de police agrandie */
+            font-weight: 600; /* Poids de police plus élevé */
+            color: #333; /* Couleur du texte */
+            margin-bottom: 20px;
+            font-family: 'Helvetica Neue', sans-serif; /* Police moderne */
+        }
+
+        /* Texte de bienvenue */
+        .motivational-text {
+            font-size: 18px; /* Taille de police augmentée */
+            color: #555; /* Couleur gris foncé */
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* Boutons */
+        .btn {
+            font-size: 16px;
+            padding: 12px 20px; /* Réduction des espacements */
+            margin: 8px;
+            border-radius: 25px; /* Coins arrondis plus prononcés */
+            font-weight: 600; /* Poids de police plus élevé */
+            transition: all 0.3s ease;
+            color: #fff;
+        }
+
+        .btn-admin {
+            background-color: #007bff; /* Couleur bleue */
+            border: none;
+        }
+
+        .btn-admin:hover {
+            background-color: #0056b3; /* Couleur bleue plus sombre au survol */
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: #6c757d; /* Couleur grise pour le bouton de déconnexion */
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268; /* Couleur grise plus sombre au survol */
+        }
+
+        /* Adaptabilité mobile */
+        @media (max-width: 768px) {
+            .container-form {
+                max-width: 90%;
+                padding: 30px;
+            }
+            h1 {
+                font-size: 28px;
+            }
+            .motivational-text {
+                font-size: 16px;
+            }
+            .btn {
+                font-size: 14px;
+                padding: 10px 15px; /* Ajustement de la taille des boutons */
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="background-video">
+    <video autoplay loop muted playsinline>
+        <source src="/static/v.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la lecture vidéo.
+    </video>
+
+    <div class="container-form">
+        <h1>Bienvenue, Administrateur</h1>
+        <div class="content">
+            <p class="motivational-text">Accedez aux fonctionnalites d'administration pour gerer les candidats, les candidatures et les offres d'emploi.</p>
+            <a href="/offres" class="btn btn-admin">Consulter les Offres</a>
+            <a href="/listuser" class="btn btn-admin">Liste des Candidats</a>
+            <a href="/listcandidatures" class="btn btn-admin">Liste des Candidatures</a>
+            <a th:href="@{/logout}" class="btn btn-secondary">Deconnexion</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

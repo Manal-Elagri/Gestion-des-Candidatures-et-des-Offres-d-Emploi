@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Commencez votre inscription</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Style pour la mise en page et l'image de fond */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Image de fond avec effet flou */
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/img.png') no-repeat center center fixed;
+            background-size: cover;
+            filter: blur(8px); /* Ajout de flou */
+            z-index: -1;
+        }
+
+        /* Conteneur pour centrer le formulaire */
+        .container {
+            display: flex;
+            justify-content: center; /* Centre horizontalement */
+            align-items: center; /* Centre verticalement */
+            height: 100vh; /* Hauteur de la vue */
+        }
+
+        /* Conteneur pour le formulaire */
+        .form-container {
+            max-width: 500px;
+            padding: 40px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.9); /* Légèrement transparent */
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Style pour les champs du formulaire */
+        .form-group label {
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        /* Style pour le bouton */
+        .btn-primary {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            background-color: #007bff;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        /* Style pour le bouton annuler */
+        .btn-cancel {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            background-color: #dc3545; /* Couleur rouge */
+            border: none;
+            color: white;
+            margin-top: 10px; /* Espacement avec le bouton précédent */
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-cancel:hover {
+            background-color: #c82333; /* Couleur rouge plus foncé au survol */
+        }
+
+        /* Style du message de notification */
+        .notification {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #28a745; /* Couleur verte pour le succès */
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            z-index: 1000;
+            width: auto;
+            max-width: 90%; /* Limiter la largeur */
+            text-align: center;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Style du texte d'erreur */
+        .text-danger {
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Notification de succès -->
+<div id="notification" class="notification">
+    Votre inscription est réussie !
+</div>
+
+<!-- Image de fond -->
+<div class="background-image"></div>
+
+<!-- Conteneur principal pour le formulaire d'inscription -->
+<div class="container">
+    <div class="form-container">
+        <h2>Commencez votre inscription</h2>
+        <form action="#" th:action="@{/adduser}" th:object="${candidat}" method="post" onsubmit="showSuccessMessage(event)">
+            <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" th:field="*{nom}" id="nom" class="form-control" placeholder="Nom" required>
+                <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" th:field="*{email}" id="email" class="form-control" placeholder="Email" required>
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="cv">CV</label>
+                <input type="text" th:field="*{cv}" id="cv" class="form-control" placeholder="CV" required>
+                <span th:if="${#fields.hasErrors('cv')}" th:errors="*{cv}" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" th:field="*{password}" id="password" class="form-control" placeholder="Mot de passe" required>
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Poser votre Inscription</button>
+            <button type="button" class="btn btn-cancel" onclick="window.location.href='/'">Annuler</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function showSuccessMessage(event) {
+        // Prevent the default form submission
+        event.preventDefault();
+
+        // Show the notification
+        const notification = document.getElementById('notification');
+        notification.style.display = 'block';
+        notification.style.opacity = '1';
+
+        // Hide the notification after 3 seconds
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 500); // Wait for fade-out effect
+        }, 3000);
+
+        // Optionally, submit the form after showing the message
+        setTimeout(function() {
+            event.target.submit(); // Submit the form after 2 seconds
+        }, 2000);
+    }
+</script>
+
+</body>
+</html>
